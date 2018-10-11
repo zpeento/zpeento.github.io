@@ -108,20 +108,24 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="绣虎">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="_.get(object, path, [defaultValue]) lodash的get方法用于获取该对象指定路径下的值，如果值为undefined，则返回默认值。  1234567891011function get(object, path, defaultValue)&amp;#123;var result = object == null ? undefined : baseGet(objec">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lodash探源之get方法">
+<meta property="og:url" content="http://yoursite.com/2018/10/11/Lodash探源之get方法/index.html">
 <meta property="og:site_name" content="绣虎">
+<meta property="og:description" content="_.get(object, path, [defaultValue]) lodash的get方法用于获取该对象指定路径下的值，如果值为undefined，则返回默认值。  1234567891011function get(object, path, defaultValue)&amp;#123;var result = object == null ? undefined : baseGet(objec">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-11T10:49:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="绣虎">
+<meta name="twitter:title" content="Lodash探源之get方法">
+<meta name="twitter:description" content="_.get(object, path, [defaultValue]) lodash的get方法用于获取该对象指定路径下的值，如果值为undefined，则返回默认值。  1234567891011function get(object, path, defaultValue)&amp;#123;var result = object == null ? undefined : baseGet(objec">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/11/Lodash探源之get方法/"/>
 
 
 
@@ -131,7 +135,7 @@
   };
 </script>
 
-  <title>绣虎</title>
+  <title>Lodash探源之get方法 | 绣虎</title>
   
 
 
@@ -178,8 +182,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -216,7 +219,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
     <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
   </li>
@@ -260,9 +263,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -294,11 +297,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/11/Lodash探源之get方法/" itemprop="url">
-                  Lodash探源之get方法
-                </a>
+          <h1 class="post-title" itemprop="name headline">Lodash探源之get方法
               
             
           </h1>
@@ -361,9 +360,7 @@
       
 
       
-        
-          
-            <h1 id="get-object-path-defaultValue"><a href="#get-object-path-defaultValue" class="headerlink" title="_.get(object, path, [defaultValue])"></a>_.get(object, path, [defaultValue])</h1><blockquote>
+        <h1 id="get-object-path-defaultValue"><a href="#get-object-path-defaultValue" class="headerlink" title="_.get(object, path, [defaultValue])"></a>_.get(object, path, [defaultValue])</h1><blockquote>
 <p>lodash的get方法用于获取该对象指定路径下的值，如果值为undefined，则返回默认值。</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function get(object, path, defaultValue)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">var result = object == null ? undefined : baseGet(object, path);</span><br><span class="line"></span><br><span class="line">return result === undefined ? defaultValue : result;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default get;</span><br></pre></td></tr></table></figure>
@@ -428,8 +425,6 @@
 <p>回调函数return的返回值替换匹配到的值。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var str = &quot;yyyy-MM-dd&quot;.replace(/(y)+/g, function(match,expression,quote,subString)&#123;</span><br><span class="line">    console.log(match,expression,quote,subString)</span><br><span class="line">&#125;)</span><br><span class="line">// yyyy y 0 yyyy-MM-dd</span><br><span class="line">// str的值为：undefined-MM-dd</span><br></pre></td></tr></table></figure>
 
-          
-        
       
     </div>
 
@@ -449,156 +444,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/25/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhou Hongwei">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="绣虎">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/25/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
+              <a href="/2018/05/25/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
             
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-05-25 19:02:53" itemprop="dateCreated datePublished" datetime="2018-05-25T19:02:53+08:00">2018-05-25</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -608,14 +475,19 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -636,8 +508,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -682,6 +563,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#get-object-path-defaultValue"><span class="nav-number">1.</span> <span class="nav-text">_.get(object, path, [defaultValue])</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -809,6 +706,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
 
   
 
