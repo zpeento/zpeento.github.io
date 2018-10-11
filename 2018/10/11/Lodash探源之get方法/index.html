@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="绣虎">
 <meta property="og:description" content="_.get(object, path, [defaultValue]) lodash的get方法用于获取该对象指定路径下的值，如果值为undefined，则返回默认值。  1234567891011function get(object, path, defaultValue)&amp;#123;var result = object == null ? undefined : baseGet(objec">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-11T10:49:09.000Z">
+<meta property="og:updated_time" content="2018-10-11T10:58:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lodash探源之get方法">
 <meta name="twitter:description" content="_.get(object, path, [defaultValue]) lodash的get方法用于获取该对象指定路径下的值，如果值为undefined，则返回默认值。  1234567891011function get(object, path, defaultValue)&amp;#123;var result = object == null ? undefined : baseGet(objec">
@@ -322,7 +322,7 @@
                 
               
 
-              <time title="Created: 2018-10-11 18:47:42 / Modified: 18:49:09" itemprop="dateCreated datePublished" datetime="2018-10-11T18:47:42+08:00">2018-10-11</time>
+              <time title="Created: 2018-10-11 18:47:42 / Modified: 18:58:23" itemprop="dateCreated datePublished" datetime="2018-10-11T18:47:42+08:00">2018-10-11</time>
             
 
             
@@ -371,23 +371,23 @@
 <li>如果result为undefined则返回默认值，否则返回本身。</li>
 </ol>
 <hr>
-<p>核心是这个++baseGet++函数，我们看看它是如何实现的，我们用 ++_.get({a:{b:{c:null},’a.b[c]’,’default’)++ 作为示例。</p>
+<p>核心是这个 <strong>baseGet</strong> 函数，我们看看它是如何实现的，我们用 <strong> _.get({a:{b:{c:null},’a.b[c]’,’default’)</strong> 作为示例。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">import castPath from &apos;./castPath.js&apos;</span><br><span class="line">import toKey from &apos;./toKey.js&apos;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * The base implementation of `get` without support for default values.</span><br><span class="line"> *</span><br><span class="line"> * @private</span><br><span class="line"> * @param &#123;Object&#125; object The object to query.</span><br><span class="line"> * @param &#123;Array|string&#125; path The path of the property to get.</span><br><span class="line"> * @returns &#123;*&#125; Returns the resolved value.</span><br><span class="line"> */</span><br><span class="line">function baseGet(object, path) &#123;</span><br><span class="line">  path = castPath(path, object)</span><br><span class="line"></span><br><span class="line">  let index = 0</span><br><span class="line">  const length = path.length</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//undefined == null</span><br><span class="line">  while (object != null &amp;&amp; index &lt; length) &#123;</span><br><span class="line">    object = object[toKey(path[index++])]</span><br><span class="line">  &#125;</span><br><span class="line">  return (index &amp;&amp; index == length) ? object : undefined</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>它这里引入了一个++castPath++函数，很明显就是将形为’a.b[c]’的path拆成[a,b,c]这样的数组形式。</p>
+<p>它这里引入了一个 <strong>castPath</strong> 函数，很明显就是将形为’a.b[c]’的path拆成[a,b,c]这样的数组形式。</p>
 <p>这里用while循环path数组，对object重新赋值，直至获取到目标指向的值。</p>
 <p>如果循环中有一个key不存在，即获取不到值，则跳出循环并返回undefined。</p>
 <p>循环条件里有一个小知识点：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">object != null</span><br></pre></td></tr></table></figure></p>
 <p>如果object为undefined，<code>undefined == null 为 true</code> ，所以也会跳出循环，另外注意<code>undefined === null 为 false</code>。</p>
 <p>另外个人觉得这里对object循环赋值的写法有待商榷，重新命名一个变量虽然代码上冗余，但可读性会有所提升。</p>
-<p>这里还引入了一个++toKey函数++，用于保证key为string或者symbol类型，当然，实际上你用number、bool等类型，一样可以获取到对应的值。</p>
+<p>这里还引入了一个 <strong>toKey函数</strong> ，用于保证key为string或者symbol类型，当然，实际上你用number、bool等类型，一样可以获取到对应的值。</p>
 <hr>
-<p>baseGet函数中引用了++castPath和toKey++这两个函数，我们先看看++toKey++的实现方式。</p>
+<p>baseGet函数中引用了 <strong>castPath和toKey</strong> 这两个函数，我们先看看 <strong>toKey</strong> 的实现方式。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import isSymbol from &apos;../isSymbol.js&apos;</span><br><span class="line"></span><br><span class="line">/** Used as references for various `Number` constants. */</span><br><span class="line">const INFINITY = 1 / 0</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Converts `value` to a string key if it&apos;s not a string or symbol.</span><br><span class="line"> *</span><br><span class="line"> * @private</span><br><span class="line"> * @param &#123;*&#125; value The value to inspect.</span><br><span class="line"> * @returns &#123;string|symbol&#125; Returns the key.</span><br><span class="line"> */</span><br><span class="line">function toKey(value) &#123;</span><br><span class="line">  if (typeof value == &apos;string&apos; || isSymbol(value)) &#123;</span><br><span class="line">    return value</span><br><span class="line">  &#125;</span><br><span class="line">  const result = `$&#123;value&#125;`</span><br><span class="line">  return (result == &apos;0&apos; &amp;&amp; (1 / value) == -INFINITY) ? &apos;-0&apos; : result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default toKey</span><br></pre></td></tr></table></figure>
 <p>这里它用了<code>${value}</code>的方式将其他类型转为字符串类型，这种写法其实就是原先的<code>&quot;&quot; + value</code>的新写法，效果和<code>String(value)</code>是一样的，其实就是隐式调用String()方法。</p>
 <p>这里顺便再提一下String()和toString()的区别,toString无法将null和undefined转为”null”和”undefined”。</p>
 <p>另外这里我们看到这段代码里有一个很特别的判断，”-0”的判断，我也是从这里才知道，原来String(-0)会转为”0”而不是”-0”。</p>
 <hr>
-<p>我们回头看用于将path拆分成数组的++castPath++函数。</p>
+<p>我们回头看用于将path拆分成数组的 <strong>castPath</strong> 函数。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import isKey from &apos;./isKey.js&apos;</span><br><span class="line">import stringToPath from &apos;./stringToPath.js&apos;</span><br><span class="line">/**</span><br><span class="line"> * Casts `value` to a path array if it&apos;s not one.</span><br><span class="line"> *</span><br><span class="line"> * @private</span><br><span class="line"> * @param &#123;*&#125; value The value to inspect.</span><br><span class="line"> * @param &#123;Object&#125; [object] The object to query keys on.</span><br><span class="line"> * @returns &#123;Array&#125; Returns the cast property path array.</span><br><span class="line"> */</span><br><span class="line">function castPath(value, object) &#123;</span><br><span class="line">  if (Array.isArray(value)) &#123;</span><br><span class="line">    return value</span><br><span class="line">  &#125;</span><br><span class="line">  return isKey(value, object) ? [value] : stringToPath(value)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default castPath</span><br></pre></td></tr></table></figure>
 <p>第一步先通过Array.isArray判断传入的path是否为数组，如果本身就是数组，也就不需要再处理，直接返回。</p>
 <p>第二步判断这个value是否本身就是key，如果是key，则直接返回路径为[value]。</p>
