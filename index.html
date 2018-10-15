@@ -277,6 +277,164 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/11/JS性能优化之缓存函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhou Hongwei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="绣虎">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/11/JS性能优化之缓存函数/" itemprop="url">
+                  Untitled
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-11 18:47:42" itemprop="dateCreated datePublished" datetime="2018-10-11T18:47:42+08:00">2018-10-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-10-15 19:23:25" itemprop="dateModified" datetime="2018-10-15T19:23:25+08:00">2018-10-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>缓存函数是非常常见的一种JS性能优化手段，那什么是缓存函数呢？</p>
+<p>首先，用一个简单的斐波那契函数作为示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function fn(n) &#123;</span><br><span class="line">    if(n == 0 || n==1) &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return fn(n-1) + fn(n-2)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在chrome上测试后发现基本fn(50)就会卡死。</p>
+<p>缓存函数就非常适用于这种存在大量重复计算的场景。</p>
+<p>我们会将运算的结果放到一个数组或对象中，当下一次传入同样的参数时，我们就不需要再计算，直接返回我们存放在数组或者对象中的结果，计算性能提升十分明显。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const Memoize = function(funcName, env=window) &#123;</span><br><span class="line">    let func = env[funcName];</span><br><span class="line">    let cache = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    return function(...args) &#123;</span><br><span class="line">        let key = args.join(&apos;_&apos;);</span><br><span class="line">        if(!(key in cache)) &#123;</span><br><span class="line">           cache[key] = func.apply(env, args)</span><br><span class="line">        &#125;;</span><br><span class="line">        console.log(cache)</span><br><span class="line">        return cache[key];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn = Memoize(&apos;fn&apos;);</span><br><span class="line">fn(50)</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/11/Lodash探源之get方法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -652,7 +810,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
