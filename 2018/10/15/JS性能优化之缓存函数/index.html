@@ -110,14 +110,14 @@
 
   <meta name="description" content="缓存函数是非常常见的一种JS性能优化手段，那什么是缓存函数呢？ 首先，用一个简单的斐波那契函数作为示例： 1234567function fn(n) &amp;#123;    if(n == 0 || n==1) &amp;#123;        return 1;    &amp;#125;    return fn(n-1) + fn(n-2)&amp;#125; 在chrome上测试后发现基本fn(50)就会卡死。 缓">
 <meta property="og:type" content="article">
-<meta property="og:title" content="绣虎">
-<meta property="og:url" content="http://yoursite.com/2018/10/11/JS性能优化之缓存函数/index.html">
+<meta property="og:title" content="JS性能优化之缓存函数">
+<meta property="og:url" content="http://yoursite.com/2018/10/15/JS性能优化之缓存函数/index.html">
 <meta property="og:site_name" content="绣虎">
 <meta property="og:description" content="缓存函数是非常常见的一种JS性能优化手段，那什么是缓存函数呢？ 首先，用一个简单的斐波那契函数作为示例： 1234567function fn(n) &amp;#123;    if(n == 0 || n==1) &amp;#123;        return 1;    &amp;#125;    return fn(n-1) + fn(n-2)&amp;#125; 在chrome上测试后发现基本fn(50)就会卡死。 缓">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-15T11:23:25.000Z">
+<meta property="og:updated_time" content="2018-10-15T11:28:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="绣虎">
+<meta name="twitter:title" content="JS性能优化之缓存函数">
 <meta name="twitter:description" content="缓存函数是非常常见的一种JS性能优化手段，那什么是缓存函数呢？ 首先，用一个简单的斐波那契函数作为示例： 1234567function fn(n) &amp;#123;    if(n == 0 || n==1) &amp;#123;        return 1;    &amp;#125;    return fn(n-1) + fn(n-2)&amp;#125; 在chrome上测试后发现基本fn(50)就会卡死。 缓">
 
 
@@ -125,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/11/JS性能优化之缓存函数/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/15/JS性能优化之缓存函数/"/>
 
 
 
@@ -135,7 +135,7 @@
   };
 </script>
 
-  <title> | 绣虎</title>
+  <title>JS性能优化之缓存函数 | 绣虎</title>
   
 
 
@@ -280,7 +280,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/11/JS性能优化之缓存函数/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/15/JS性能优化之缓存函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhou Hongwei">
@@ -297,7 +297,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h1 class="post-title" itemprop="name headline">JS性能优化之缓存函数
               
             
           </h1>
@@ -322,24 +322,12 @@
                 
               
 
-              <time title="Created: 2018-10-11 18:47:42" itemprop="dateCreated datePublished" datetime="2018-10-11T18:47:42+08:00">2018-10-11</time>
+              <time title="Created: 2018-10-15 19:26:44 / Modified: 19:28:13" itemprop="dateCreated datePublished" datetime="2018-10-15T19:26:44+08:00">2018-10-15</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-10-15 19:23:25" itemprop="dateModified" datetime="2018-10-15T19:23:25+08:00">2018-10-15</time>
               
             
           </span>
