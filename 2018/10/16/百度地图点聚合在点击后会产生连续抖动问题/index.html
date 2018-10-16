@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="当我们需要在地图上展示非常多的标注点的时候，点与点会产生堆叠、覆盖。 百度地图的点聚合功能正是用于这样的场景。 但在实际使用中，我遇到了一个问题，聚合后的标注点在点击时，地图会产生明显的连续抖动! 一开始我以为是我自己使用的问题，后来查看了官方的示例，如下官方的点聚合demo： 123456789101112131415161718&amp;lt;script type=&amp;quot;text/javasc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="百度地图点聚合在点击后会产生连续抖动问题">
+<meta property="og:url" content="http://yoursite.com/2018/10/16/百度地图点聚合在点击后会产生连续抖动问题/index.html">
+<meta property="og:site_name" content="绣虎">
+<meta property="og:description" content="当我们需要在地图上展示非常多的标注点的时候，点与点会产生堆叠、覆盖。 百度地图的点聚合功能正是用于这样的场景。 但在实际使用中，我遇到了一个问题，聚合后的标注点在点击时，地图会产生明显的连续抖动! 一开始我以为是我自己使用的问题，后来查看了官方的示例，如下官方的点聚合demo： 123456789101112131415161718&amp;lt;script type=&amp;quot;text/javasc">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-16T11:39:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="百度地图点聚合在点击后会产生连续抖动问题">
+<meta name="twitter:description" content="当我们需要在地图上展示非常多的标注点的时候，点与点会产生堆叠、覆盖。 百度地图的点聚合功能正是用于这样的场景。 但在实际使用中，我遇到了一个问题，聚合后的标注点在点击时，地图会产生明显的连续抖动! 一开始我以为是我自己使用的问题，后来查看了官方的示例，如下官方的点聚合demo： 123456789101112131415161718&amp;lt;script type=&amp;quot;text/javasc">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/16/百度地图点聚合在点击后会产生连续抖动问题/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>百度地图点聚合在点击后会产生连续抖动问题 | 绣虎</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">绣虎</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/16/百度地图点聚合在点击后会产生连续抖动问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhou Hongwei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="绣虎">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">百度地图点聚合在点击后会产生连续抖动问题
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-16 19:38:41 / Modified: 19:39:38" itemprop="dateCreated datePublished" datetime="2018-10-16T19:38:41+08:00">2018-10-16</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>当我们需要在地图上展示非常多的标注点的时候，点与点会产生堆叠、覆盖。</p>
+<p>百度地图的点聚合功能正是用于这样的场景。</p>
+<p>但在实际使用中，我遇到了一个问题，聚合后的标注点在点击时，地图会产生明显的连续抖动!</p>
+<p>一开始我以为是我自己使用的问题，后来查看了官方的示例，如下官方的点聚合demo：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">	// 百度地图API功能</span><br><span class="line">	var map = new BMap.Map(&quot;allmap&quot;);</span><br><span class="line">	map.centerAndZoom(new BMap.Point(116.404, 39.915), 5);</span><br><span class="line">	map.enableScrollWheelZoom();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	var MAX = 10;</span><br><span class="line">	var markers = [];</span><br><span class="line">	var pt = null;</span><br><span class="line">	var i = 0;</span><br><span class="line">	for (; i &lt; MAX; i++) &#123;</span><br><span class="line">	   pt = new BMap.Point(Math.random() * 40 + 85, Math.random() * 30 + 21);</span><br><span class="line">	   markers.push(new BMap.Marker(pt));</span><br><span class="line">	&#125;</span><br><span class="line">	//最简单的用法，生成一个marker数组，然后调用markerClusterer类即可。</span><br><span class="line">	var markerClusterer = new BMapLib.MarkerClusterer(map, &#123;markers:markers&#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>我发现官方的示例上同样存在点击后地图连续抖动的问题，尤其是聚合数比较大时，尤为明显。</p>
+<p>那基本可以判断是它的源码有问题了，我们只能改动它的源码。</p>
+<p>我们从入口方法，MarkerClusterer.addMarkers看起：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">MarkerClusterer.prototype.addMarkers = function(markers)&#123;</span><br><span class="line">    if (!markers.length) &#123;</span><br><span class="line">        return</span><br><span class="line">    &#125;</span><br><span class="line">    for(var i = 0, len = markers.length; i &lt;len ; i++)&#123;</span><br><span class="line">        this._pushMarkerTo(markers[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    this._createClusters();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>这个方法逻辑上就是遍历每一个marker，对每一个marker执行_pushMarkerTo方法，最后执行_createClusters方法。</p>
+<p>我们先看看_pushMarkerTo这个方法的作用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">MarkerClusterer.prototype._pushMarkerTo = function(marker)&#123;</span><br><span class="line">    var index = indexOf(marker, this._markers);</span><br><span class="line">    if(index === -1)&#123;</span><br><span class="line">        marker.isInCluster = false;</span><br><span class="line">        this._markers.push(marker);//Marker拖放后enableDragging不做变化，忽略</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>先判断marker是否存在于_markers中，如果不是，则将这个marker推入_markers数组中，并打上isInCluster =false的标记。</p>
+<p>在将所有marker都执行完_pushMarkerTo方法后，会执行_createClusters方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">MarkerClusterer.prototype._createClusters = function()&#123;</span><br><span class="line">    var mapBounds = this._map.getBounds();</span><br><span class="line">    if (!mapBounds.getCenter()) &#123;</span><br><span class="line">        return</span><br><span class="line">    &#125;</span><br><span class="line">    var extendedBounds = getExtendedBounds(this._map, mapBounds, this._gridSize);</span><br><span class="line">    for(var i = 0, marker; marker = this._markers[i]; i++)&#123;</span><br><span class="line">        if(!marker.isInCluster &amp;&amp; extendedBounds.containsPoint(marker.getPosition()) )&#123;</span><br><span class="line">            this._addToClosestCluster(marker);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>_createClusters方法会遍历_markers数组，对于有着isInCluster =false标记，即还没有归入cluster中的marker执行_addToClosestCluster方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">MarkerClusterer.prototype._addToClosestCluster = function (marker)&#123;</span><br><span class="line"></span><br><span class="line">    ......</span><br><span class="line">    ......</span><br><span class="line"></span><br><span class="line">    if (clusterToAddTo &amp;&amp; clusterToAddTo.isMarkerInClusterBounds(marker))&#123;</span><br><span class="line">        clusterToAddTo.addMarker(marker);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        var cluster = new Cluster(this);</span><br><span class="line">        cluster.addMarker(marker);</span><br><span class="line">        this._clusters.push(cluster);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这里大致的逻辑就是，对于传入的marker，如果这个marker在已知的cluster范围中，则将marker加入到这个cluster中，否则就新建一个cluster，并将这个marker加入到这个新的cluster中。</p>
+<p>这就到了这个问题的根源函数cluster.addMarker：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Cluster.prototype.addMarker = function(marker)&#123;</span><br><span class="line"></span><br><span class="line">    ......</span><br><span class="line">    ......</span><br><span class="line"></span><br><span class="line">    this.updateClusterMarker();</span><br><span class="line">    return true;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这个函数比较长 我们就不细写，只需要看到在每次addMaker的末尾，必然会调用updateClusterMarker这个函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Cluster.prototype.updateClusterMarker = function () &#123;</span><br><span class="line"></span><br><span class="line">    ......</span><br><span class="line">    ......</span><br><span class="line"></span><br><span class="line">    this._clusterMarker.addEventListener &amp;&amp; this._clusterMarker.addEventListener(&quot;click&quot;, function(event)&#123;</span><br><span class="line">       	 thatMap.setViewport(thatBounds);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个就是罪魁祸首了。</p>
+<p>对于每一个marker都必然会执行addMarker,也就会调用这个updateClusterMarker方法。</p>
+<p>那我们看到，这个函数里面使用addEventListener进行了点击事件的绑定，也就是说，每addMarker一次，就会多绑定一个点击事件。</p>
+<p>如果一个cluster中有5个marker，就会在这个cluster的标注点上绑定5个点击事件，当点击时，也就会触发5次setViewport，这就是点聚合在点击时造成连续抖动的原因。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(!this._clusterMarker.hasBindClickEvent) &amp;&amp; this._clusterMarker.addEventListener &amp;&amp; this._clusterMarker.addEventListener(&quot;click&quot;, function(event)&#123;</span><br><span class="line">    thatMap.setViewport(thatBounds);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">this._clusterMarker.hasBindClickEvent = true;</span><br></pre></td></tr></table></figure>
+<p>我做了简单修改，尽可能的减小代码的改动，避免了重复的点击事件绑定。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/15/JS性能优化之缓存函数/" rel="next" title="JS性能优化之缓存函数">
+                <i class="fa fa-chevron-left"></i> JS性能优化之缓存函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zhou Hongwei</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhou Hongwei</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
