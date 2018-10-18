@@ -277,6 +277,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/18/npm5与yarn对比/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhou Hongwei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="绣虎">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/18/npm5与yarn对比/" itemprop="url">
+                  npm5与yarn对比
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-18 16:42:00 / Modified: 16:42:21" itemprop="dateCreated datePublished" datetime="2018-10-18T16:42:00+08:00">2018-10-18</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>yarn最早产生的原因就是因为npm 提供的锁文件不好用。<br>在使用yarn install 时会产生一个yarn.lock文件，包含每个依赖项的确切版本信息以及代码的校验以确保代码完全相同，可以避免意外获得不良的依赖。</p>
+<p>不过npm5这个版本吸取了很多yarn的优点，比如install时会自动产生package-lock.json文件，用于锁定依赖树。</p>
+<p>对npm5和yarn进行一个简单的对比：</p>
+<h3 id="1-upgrade单个模块的方式不同"><a href="#1-upgrade单个模块的方式不同" class="headerlink" title="1. upgrade单个模块的方式不同"></a>1. upgrade单个模块的方式不同</h3><p>对于package-lock.json中的依赖项，即使更新了package.json中的某一个依赖的版本，当执行npm install 时，并不会安装更新后的依赖，而是依然安装package-lock.json中指定的依赖版本，必须通过install 指定版本来更新依赖。</p>
+<p>而在yarn中则会根据package.json的更新，安装新的模块，并更新yarn.lock</p>
+<h3 id="2-registry优先级不同"><a href="#2-registry优先级不同" class="headerlink" title="2. registry优先级不同"></a>2. registry优先级不同</h3><p>在npm中，lock文件中的registry优先级要低于config配置的registry<br>而在yarn中则恰恰相反。<br>registry优先级的不同各有各的好处，个人会更喜欢yarn的一些，有时候服务器上的源配置会有问题，这时候yarn.lock很好使，起码你可以确定安装包的来源是你在lock文件中指定的源，而不是服务器上配置的源。<br>当然npm这种方式确实更方便于管理。</p>
+<h3 id="3-安装速度"><a href="#3-安装速度" class="headerlink" title="3. 安装速度"></a>3. 安装速度</h3><p>就实际体验来看，虽然npm5的下载速度已经有了很大的提升，但是和yarn还是有一定差距。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/16/百度地图点聚合在点击后会产生连续抖动问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -979,7 +1125,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
