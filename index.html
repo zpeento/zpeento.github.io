@@ -277,6 +277,163 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/28/Object-keys-顺序问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhou Hongwei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="绣虎">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/28/Object-keys-顺序问题/" itemprop="url">
+                  Object keys 顺序问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-05-28 11:34:03 / Modified: 11:35:02" itemprop="dateCreated datePublished" datetime="2019-05-28T11:34:03+08:00">2019-05-28</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>js 中的 Object keys 的输出顺序是什么样的呢？ </p>
+<p>之前我错误地以为object 的 key的输出顺序与输入顺序是完全一致的，实际上自己踩入了一个误区。  </p>
+<p>我们可以尝试输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const a = &#123;</span><br><span class="line">    2: &apos;o&apos;,</span><br><span class="line">    y: &apos;yyf&apos;,</span><br><span class="line">    -3: &apos;m&apos;,</span><br><span class="line">    1: &apos;b&apos;,</span><br><span class="line">&#125;</span><br><span class="line">console.log(a)</span><br><span class="line">console.log(Object.keys(a))</span><br></pre></td></tr></table></figure>
+<p>我们会发现输出值为如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    1: &apos;b&apos;,</span><br><span class="line">    2: &apos;o&apos;,</span><br><span class="line">    y: &apos;yyf&apos;</span><br><span class="line">    -3: &apos;m&apos;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[&apos;1&apos;, &apos;2&apos;, &apos;y&apos;, &apos;-3&apos;]</span><br></pre></td></tr></table></figure></p>
+<p>Object.keys() 和 for…in 输出顺序也是一样。</p>
+<p>实际上遵循的输出规则为：</p>
+<ol>
+<li>按（integer indices）升序输出</li>
+<li>按添加顺序输出字符串key</li>
+<li>按添加顺序输出Symbol key （es6 中新加的）<blockquote>
+<p>integer indices ：<br>是指将key转化为53bit的无符号整型，然后再转h回字符串 后依旧相等的 key。</p>
+<blockquote>
+<p>如 ‘10’, ‘2’ 为integer indices。<br>‘01’, ‘12a’ 不是 integer indices。</p>
+</blockquote>
+</blockquote>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/22/console-log的执行机制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1274,7 +1431,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1318,7 +1475,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
